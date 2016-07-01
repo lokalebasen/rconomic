@@ -56,8 +56,8 @@ describe Economic::DebtorProxy do
       result = subject.find_by_number('1')
       expect(result).to be_instance_of(Economic::Debtor)
       expect(result.number).to eq(1)
-      expect(result.partial).to eq(true)
-      expect(result.persisted).to eq(true)
+      expect(result.partial).to be_true
+      expect(result.persisted).to be_true
       expect(result.handle).to eq(Economic::Entity::Handle.new({:number => 1}))
     end
 
@@ -74,8 +74,8 @@ describe Economic::DebtorProxy do
       result = subject.find_by_telephone_and_fax_number('22334455')
       expect(result).to be_instance_of(Economic::Debtor)
       expect(result.number).to eq(1)
-      expect(result.partial).to eq(true)
-      expect(result.persisted).to eq(true)
+      expect(result.partial).to be_true
+      expect(result.persisted).to be_true
     end
 
     it "returns nil when there is no debtor" do
