@@ -80,6 +80,6 @@ class Economic::Endpoint
   end
 
   def app_identifier
-    "Aging Rconomic Fork/#{Rconomic::VERSION} (https://www.github.com/lokalebasen/rconomic) | udviklere@lokalebasen.dk"
+    "Aging Rconomic Fork/#{::Rconomic::VERSION} (https://www.github.com/lokalebasen/rconomic) | udviklere@lokalebasen.dk"
   end
 end

@@ -2,6 +2,7 @@
 require 'time'
 require 'savon'
 
+require "rconomic/version"
 require 'economic/support/string'
 require 'economic/session'
 
