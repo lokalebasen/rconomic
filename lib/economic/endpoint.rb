@@ -31,10 +31,12 @@ class Economic::Endpoint
   # Cached on class-level to avoid loading the big WSDL file more than once (can
   # take several hundred megabytes of RAM after a while...)
   def client
+    app_identifier_binding = app_identifier
     @@client ||= Savon.client do
       wsdl      File.expand_path(File.join(File.dirname(__FILE__), "economic.wsdl"))
       log       false
       log_level :info
+      headers('X-EconomicAppIdentifier' => app_identifier_binding)
     end
   end
 
@@ -75,5 +77,9 @@ class Economic::Endpoint
       soap_action,
       locals
     )
+  end
+
+  def app_identifier
+    "Aging Rconomic Fork/#{Rconomic::VERSION} (https://www.github.com/lokalebasen/rconomic) | udviklere@lokalebasen.dk"
   end
 end
