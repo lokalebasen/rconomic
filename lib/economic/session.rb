@@ -9,7 +9,7 @@ module Economic
     def_delegators :endpoint, :logger=, :log_level=, :log=
 
     attr_accessor :agreement_number, :user_name, :password
-    attr_reader :authentication_token
+    attr_reader :auth_cookies
 
     def initialize(agreement_number = nil, user_name = nil, password = nil)
       self.agreement_number = agreement_number
@@ -26,7 +26,7 @@ module Economic
           :appToken => private_app_id
         }
       ) do |response|
-        store_authentication_token(response)
+        store_auth_cookies(response)
       end
     end
 
@@ -39,7 +39,7 @@ module Economic
           :password => password
         }
       ) do |response|
-        store_authentication_token(response)
+        store_auth_cookies(response)
       end
     end
 
@@ -106,7 +106,7 @@ module Economic
 
     # Requests an action from the API endpoint
     def request(soap_action, data = nil)
-      endpoint.call(soap_action, data, authentication_token)
+      endpoint.call(soap_action, data, auth_cookies)
     end
 
     # Returns self - used by proxies to access the session of their owner
@@ -121,8 +121,8 @@ module Economic
 
     private
 
-    def store_authentication_token(response)
-      @authentication_token = response.http.cookies
+    def store_auth_cookies(response)
+      @auth_cookies = response.http.cookies
     end
   end
 end

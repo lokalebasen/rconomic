@@ -15,8 +15,6 @@ class Economic::Endpoint
   # If you need access to more details from the unparsed SOAP response, supply
   # a block to `call`. A Savon::Response will be yielded to the block.
   def call(soap_action, data = nil, cookies = nil)
-    # set_client_headers(headers)
-
     response = request(soap_action, data, cookies)
 
     if block_given?
@@ -30,14 +28,16 @@ class Economic::Endpoint
   #
   # Cached on class-level to avoid loading the big WSDL file more than once (can
   # take several hundred megabytes of RAM after a while...)
+  #
   def client
-    app_identifier_binding = app_identifier
-    @@client ||= Savon.client do
-      wsdl      File.expand_path(File.join(File.dirname(__FILE__), "economic.wsdl"))
-      log       false
-      log_level :info
-      headers('X-EconomicAppIdentifier' => app_identifier_binding)
-    end
+    wsdl_file = File.expand_path(File.join(File.dirname(__FILE__), "economic.wsdl"))
+
+    @@client ||= Savon.client(
+      wsdl: wsdl_file,
+      log: false,
+      log_level: :debug,
+      headers: { 'X-EconomicAppIdentifier' => app_identifier }
+    )
   end
 
   # Returns the E-conomic API action name to call
@@ -69,14 +69,11 @@ class Economic::Endpoint
   end
 
   def request(soap_action, data, cookies)
-    locals = {}
-    locals[:message] = data if data && !data.empty?
-    locals[:cookies] = cookies if cookies && !cookies.empty?
+    options = {}
+    options[:message] = data if data && !data.empty?
+    options[:cookies] = cookies if cookies && !cookies.empty?
 
-    client.call(
-      soap_action,
-      locals
-    )
+    client.call(soap_action, options)
   end
 
   def app_identifier
