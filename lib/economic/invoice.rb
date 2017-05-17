@@ -2,8 +2,7 @@ require 'economic/entity'
 
 module Economic
   class Invoice < Entity
-    has_properties :handle,
-                   :number,
+    has_properties :number,
                    :debtor_handle,
                    :project_handle,
                    :debtor_name,
