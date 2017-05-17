@@ -2,21 +2,49 @@ require 'economic/entity'
 
 module Economic
   class Invoice < Entity
-    has_properties :number,
-      :net_amount,
-      :vat_amount,
-      :gross_amount,
-      :due_date,
-      :debtor_handle,
-      :debtor_name,
-      :debtor_name,
-      :debtor_address,
-      :debtor_postal_code,
-      :debtor_city,
-      :debtor_country,
-      :debtor_ean,
-      :attention_handle,
-      :heading
+    has_properties :handle,
+                   :number,
+                   :debtor_handle,
+                   :project_handle,
+                   :debtor_name,
+                   :debtor_address,
+                   :debtor_postal_code,
+                   :debtor_city,
+                   :debtor_country,
+                   :debtor_ean,
+                   :public_entry_number,
+                   :attention_handle,
+                   :your_reference_handle,
+                   :our_reference_handle,
+                   :our_reference2_handle,
+                   :term_of_payment_handle,
+                   :currency_handle,
+                   :is_vat_included,
+                   :layout_handle,
+                   :delivery_location_handle,
+                   :delivery_address,
+                   :delivery_postal_code,
+                   :delivery_city,
+                   :delivery_country,
+                   :terms_of_delivery,
+                   :delivery_date,
+                   :date,
+                   :due_date,
+                   :heading,
+                   :text_line1,
+                   :text_line2,
+                   :other_reference,
+                   :order_number,
+                   :net_amount,
+                   :vat_amount,
+                   :gross_amount,
+                   :remainder,
+                   :remainder_default_currency,
+                   :rounding_amount,
+                   :debtor_county,
+                   :delivery_county,
+                   :net_amount_default_currency,
+                   :deduction_amount
 
     def attention
       return nil if attention_handle.nil?
@@ -63,7 +91,7 @@ module Economic
     #   end
     def pdf
       response = request(:get_pdf, {
-                           "invoiceHandle" => handle.to_hash
+        "invoiceHandle" => handle.to_hash
       })
 
       Base64.decode64(response)
