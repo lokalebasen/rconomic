@@ -4,8 +4,6 @@ module Economic
 
   # Represents a debtor in E-conomic.
   #
-  # API documentation: http://www.e-conomic.com/apidocs/Documentation/T_Economic_Api_IDebtor.html
-  #
   # Examples
   #
   #   # Find a debtor:
@@ -22,6 +20,8 @@ module Economic
   #   debtor.is_accessible = true
   #   debtor.ci_number = '12345678'
   #   debtor.term_of_payment_handle = { :id => 1 }
+  #   debtor.vat_number = 12345678
+  #   debtor.ean = 9780471117094
   #   debtor.layout_handle = { :id => 16 }
   #   debtor.save
   class Debtor < Entity

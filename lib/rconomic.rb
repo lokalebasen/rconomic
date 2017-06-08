@@ -39,8 +39,10 @@ require 'economic/proxies/entry_proxy'
 require 'economic/proxies/actions/debtor_contact/all'
 require 'economic/proxies/actions/find_by_name'
 
-# http://www.e-conomic.com/apidocs/Documentation/index.html
-# https://www.e-conomic.com/secure/api1/EconomicWebService.asmx
+# SOAP
+# WSDL: https://api.e-conomic.com/secure/api1/EconomicWebService.asmx?wsdl
+# Code samples: https://github.com/e-conomic/eco-api-ex/tree/master/examples/
+# Documentation: https://api.e-conomic.com/secure/api1/EconomicWebService.asmx
 #
 # TODO
 #
