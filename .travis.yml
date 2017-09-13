@@ -1,10 +1,5 @@
 # Specify which ruby versions you wish to run your tests on, each version will be used
 rvm:
-  - 1.9.3
   - 2.0.0
-  - jruby
-
-# Specify the recipients for email notification
-notifications:
-  recipients:
-    - jakob@mentalized.net
+  - 2.3.3
+  - 2.4.1
