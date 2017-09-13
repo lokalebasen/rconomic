@@ -51,7 +51,8 @@ module Economic
       :margin_as_percent,
       :heading,
       :text_line1,
-      :text_line2
+      :text_line2,
+      :extended_vat_zone_handle
 
     defaults(
       :id => 0,
@@ -183,7 +184,8 @@ module Economic
         ["VatAmount", :vat_amount, nil, :required],
         ["GrossAmount", :gross_amount, nil, :required],
         ["Margin", :margin, nil, :required],
-        ["MarginAsPercent", :margin_as_percent, nil, :required]
+        ["MarginAsPercent", :margin_as_percent, nil, :required],
+        ["VatZone", :extended_vat_zone_handle, to_hash]
       ]
     end
   end
